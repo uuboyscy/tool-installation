@@ -15,5 +15,7 @@ sleep 20
 
 sudo usermod -aG docker `whoami`
 
+rm get-docker.sh
+
 echo "docker installed."
 docker -v
