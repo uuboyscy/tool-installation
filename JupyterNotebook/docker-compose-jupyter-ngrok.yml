@@ -12,3 +12,16 @@ services:
     command: start-notebook.sh --NotebookApp.token='howdoyouturnthison8888'
     environment:
       - "GRANT_SUDO: yes"
+
+  chatbot_ngrok:
+    image: wernight/ngrok
+    container_name: chatbot_ngrok
+    depends_on:
+      - chatbot_jupyter_flask
+    restart: always
+    ports:
+      - "54088:4040"
+    links:
+      - chatbot_jupyter_flask:http
+    command: ngrok http --authtoken=32ZoeJorDdv89SQtmqi1X_6tcraKJQmPaKFD2G94kDn chatbot_jupyter_flask:5000
+
