@@ -2,6 +2,7 @@ version: '3.3'
 services:
   db:
     image: mysql:5.7
+    container_name: uuboydb
     restart: always
     environment:
       MYSQL_DATABASE: 'testdb'
