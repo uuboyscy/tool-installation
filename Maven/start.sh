@@ -8,4 +8,4 @@ then
     docker build -t uuboyscy/centos6.6 .
 fi
 
-docker run -it uuboyscy/centos6.6 /bin/bash
+docker run -it -v $(pwd)/git_dir:/work/git_dir uuboyscy/centos6.6 /bin/bash
