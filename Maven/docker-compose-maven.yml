@@ -1,8 +1,0 @@
-version: '3'
-services:
-  java-maven:
-    build: .
-    container_name: java-maven
-    restart: always
-    volumes:
-      - ./git_dir:/work/git_dir
