@@ -19,3 +19,11 @@ RUN mkdir /work/application
 COPY ./jdk1.8.0_251 /work/application/jdk1.8.0_251
 COPY ./profile /etc/profile
 WORKDIR /work/git_dir
+
+# Set ENV variables
+## Maven ENV
+ENV MAVEN_HOME=/opt/apache-maven-3.3.9
+ENV PATH=$PATH:$MAVEN_HOME/bin
+## JAVA ENV
+ENV JAVA_HOME=/work/application/jdk1.8.0_251
+ENV PATH=$PATH:$JAVA_HOME/bin
