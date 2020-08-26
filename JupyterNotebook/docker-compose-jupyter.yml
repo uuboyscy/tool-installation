@@ -1,14 +1,15 @@
 version: '3'
 services:
-  chatbot_jupyter_flask:
+  jupyter:
     build: .
-    container_name: chatbot_jupyter_flask
+    container_name: uuboy_jupyter
     restart: always
     ports:
       - "9527:8888"
       - "80:5000"
+      - "5001:5001"
     volumes:
       - ./material:/home/jovyan/work
     command: start-notebook.sh --NotebookApp.token='howdoyouturnthison8888'
     environment:
-      - "GRANT_SUDO: yes"
+      - "GRANT_SUDO:yes"
