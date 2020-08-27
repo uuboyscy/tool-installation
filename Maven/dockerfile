@@ -5,6 +5,7 @@ FROM centos:6.6
 RUN yum install -y wget
 RUN yum install -y unzip
 RUN wget http://mirrors.hust.edu.cn/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.zip -O /usr/local/src/apache-maven-bin.tar.gz
+#RUN wget http://mirrors.hust.edu.cn/apache/maven/maven-3/3.1.1/binaries/apache-maven-3.1.1-bin.zip -O /usr/local/src/apache-maven-bin.tar.gz
 RUN cd /usr/local/src && unzip apache-maven-bin.tar.gz -d /opt
 #RUN wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
 #RUN sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
@@ -17,13 +18,16 @@ RUN cd /usr/local/src && unzip apache-maven-bin.tar.gz -d /opt
 RUN mkdir -p /work/git_dir
 RUN mkdir /work/application
 COPY ./jdk1.8.0_251 /work/application/jdk1.8.0_251
+#COPY ./jdk1.7.0_71 /work/application/jdk1.7.0_71
 COPY ./profile /etc/profile
 WORKDIR /work/git_dir
 
 # Set ENV variables
 ## Maven ENV
 ENV MAVEN_HOME=/opt/apache-maven-3.3.9
+#ENV MAVEN_HOME=/opt/apache-maven-3.1.1
 ENV PATH=$PATH:$MAVEN_HOME/bin
 ## JAVA ENV
 ENV JAVA_HOME=/work/application/jdk1.8.0_251
+#ENV JAVA_HOME=/work/application/jdk1.7.0_71
 ENV PATH=$PATH:$JAVA_HOME/bin
