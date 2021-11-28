@@ -1,0 +1,41 @@
+version: '2'
+
+services:
+  db:
+    image: mysql:5.7
+    container_name: test-mysql
+    restart: always
+    ports:
+      - 33060:3306
+    expose:
+      - 3306
+    environment:
+      MYSQL_DATABASE: 'grafana'
+      MYSQL_USER: 'testuser'
+      MYSQL_PASSWORD: 'howdoyouturnthison'
+      MYSQL_ROOT_PASSWORD: 'root'
+    volumes:
+      - ./my-db:/var/lib/mysql
+      - ./mysql-dump:/docker-entrypoint-initdb.d
+    networks:
+      tmpnetwork:
+        ipv4_address: 172.22.0.22
+  data-dashboard:
+    image: grafana/grafana
+    container_name: test-grafana
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - 30000:3000
+    volumes:
+      - ./grafana-conf:/usr/share/grafana/conf
+    networks:
+      tmpnetwork:
+        ipv4_address: 172.22.0.11
+
+networks:
+  tmpnetwork:
+    ipam:
+      config:
+        - subnet: 172.22.0.0/16
