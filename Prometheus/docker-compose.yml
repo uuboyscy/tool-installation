@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  monitor:
+    image: prom/prometheus:v2.36.2
+    container_name: test-prometheus
+    restart: always
+    ports:
+      - 9090:9090
+    volumes:
+      - ./config:/etc/prometheus
+
