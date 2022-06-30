@@ -20,8 +20,10 @@ services:
     networks:
       tmpnetwork:
         ipv4_address: 172.22.0.22
+
+  # The grafana configuration files are for version less than 8.4
   data-dashboard:
-    image: grafana/grafana
+    image: grafana/grafana:8.3.3
     container_name: test-grafana
     restart: always
     depends_on:
