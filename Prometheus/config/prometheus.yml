@@ -22,8 +22,19 @@ scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
   - job_name: "prometheus"
 
-    # metrics_path defaults to '/metrics'
+    #scrape_interval: 5s
+    #scrape_timeout: 5s
+
+    # mtrics_path defaults to '/metrics'
+    #metrics_path: "/metrics"
     # scheme defaults to 'http'.
+    #schema: 'http'
 
     static_configs:
       - targets: ["localhost:9090"]
+
+  # This router is a third-party node-exporter.
+  - job_name: "node"
+    static_configs:
+      - targets: ["localhost:9100"]
+

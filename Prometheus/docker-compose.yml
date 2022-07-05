@@ -7,6 +7,15 @@ services:
     restart: always
     ports:
       - 9090:9090
+      - 9100:9100
     volumes:
       - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./node_exporter-1.1.1.linux-amd64:/home/node_exporter
+    networks:
+      grafana-mysql_tmpnetwork:
+        ipv4_address: 172.22.0.33
 
+networks:
+  grafana-mysql_tmpnetwork:
+    #name: tmpnetwork
+    external: true
