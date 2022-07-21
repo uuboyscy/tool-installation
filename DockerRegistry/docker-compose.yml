@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+  registry:
+    image: registry:2
+    container_name: registry
+    restart: always
+    ports:
+      - 5000:5000
+    networks:
+      registry_network:
+        ipv4_address: 172.23.0.11
+
+networks:
+  registry_network:
+    ipam:
+      config:
+        - subnet: 172.23.0.0/16
