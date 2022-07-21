@@ -7,6 +7,16 @@ services:
     restart: always
     ports:
       - 5000:5000
+    environment:
+      # REGISTRY_HTTP_TLS_CERTIFICATE: /certs/domain.crt
+      # REGISTRY_HTTP_TLS_KEY: /certs/domain.key
+      REGISTRY_AUTH: htpasswd
+      REGISTRY_AUTH_HTPASSWD_PATH: /auth/htpasswd
+      REGISTRY_AUTH_HTPASSWD_REALM: Registry Realm
+    volumes:
+      - ./auth:/auth
+      # - ./data:/var/lib/registry
+      # - ./path/certs:/certs
     networks:
       registry_network:
         ipv4_address: 172.23.0.11
