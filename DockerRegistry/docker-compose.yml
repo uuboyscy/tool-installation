@@ -1,6 +1,7 @@
 version: '2'
 
 services:
+
   registry:
     image: registry:2
     container_name: registry
@@ -15,11 +16,34 @@ services:
       REGISTRY_AUTH_HTPASSWD_REALM: Registry Realm
     volumes:
       - ./auth:/auth
+      - ./conf/registry-srv.yml:/etc/docker/registry/config.yml:ro
+      - ./conf/auth.cert:/etc/docker/registry/auth.cert:ro
       # - ./data:/var/lib/registry
       # - ./path/certs:/certs
     networks:
       registry_network:
         ipv4_address: 172.23.0.11
+
+  registry-web:
+    image: hyper/docker-registry-web
+    container_name: registry-web
+    restart: always
+    depends_on:
+      - registry
+    ports:
+      - 8080:8080
+    environment:
+      REGISTRY_URL: http://registry:5000/v2
+      REGISTRY_NAME: api.mydomain.com:5000
+      REGISTRY_AUTH_ENABLED: "true"
+    volumes:
+      - ./auth:/auth
+      - ./conf/registry-web.yml:/conf/config.yml:ro
+      - ./conf/auth.key:/conf/auth.key
+      - ./db:/data
+    networks:
+      registry_network:
+        ipv4_address: 172.23.0.12
 
 networks:
   registry_network:
