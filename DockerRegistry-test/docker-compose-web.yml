@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+  registry-web:
+    image: hyper/docker-registry-web
+    container_name: registry-web
+    restart: always
+    ports:
+      - 8080:8080
+    environment:
+      REGISTRY_URL: http://registry:5000/v2
+      REGISTRY_NAME: localhost:5000
+      REGISTRY_AUTH_ENABLED: "true"
+      REGISTRY_BASIC_AUTH: dGVzdHVzZXI6dGVzdHBhc3N3b3Jk
+    external_links:
+      - :registry
+    #links:
+      #- :registry
