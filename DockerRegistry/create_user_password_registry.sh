@@ -9,4 +9,4 @@
 set -x
 
 mkdir auth
-docker run --entrypoint htpasswd httpd:2 -Bbn admim admin > auth/htpasswd
+docker run --entrypoint htpasswd httpd:2 -Bbn testuser testpassword > auth/htpasswd

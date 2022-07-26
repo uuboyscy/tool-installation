@@ -36,7 +36,7 @@ services:
       REGISTRY_URL: http://registry:5000/v2
       REGISTRY_NAME: localhost:5000
       REGISTRY_AUTH_ENABLED: "true"
-      REGISTRY_BASIC_AUTH: dGVzdHVzZXI6dGVzdHBhc3N3b3JkCg==
+      REGISTRY_BASIC_AUTH: dGVzdHVzZXI6dGVzdHBhc3N3b3Jk
     volumes:
       - ./auth:/auth
       - ./conf/registry-web.yml:/conf/config.yml:ro

@@ -1,7 +1,8 @@
 registry:
-  # Docker registry url# Docker registry url
-  url: http://registry:5000/v2
+  # Docker registry url
+  url: http://registry-srv:5000/v2
   # Docker registry fqdn
+  #name: api.mydomain.com:5000
   name: localhost:5000
   # To allow image delete, should be false
   readonly: false
@@ -14,6 +15,3 @@ registry:
     # Private key for token signing
     # certificate used on auth.token.rootcertbundle should signed by this key
     key: /conf/auth.key
-    #htpasswd:
-      #realm: corp-realm
-      #path: /auth/htpasswd
