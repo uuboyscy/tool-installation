@@ -4,7 +4,8 @@
 
 ## **What is a Dockerfile?**
 
-- A Dockerfile is a text file that contains a series of instructions and commands used by Docker to automatically build a new image. Think of it as a recipe that Docker follows to create an environment where your application can run.
+- Just like a recipe. Docker follows it to create an environment where your application can run.
+- Dockerfile is a text file that contains a series of instructions and commands used by Docker to automatically build a new image.
 
 ## **Why Use a Dockerfile?**
 
